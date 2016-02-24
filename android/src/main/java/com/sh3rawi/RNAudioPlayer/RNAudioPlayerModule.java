@@ -27,9 +27,6 @@ public class RNAudioPlayerModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void play(String audio) {
-//    String fname = audio.toLowerCase();
-//    int resID = this.reactContext.getResources().getIdentifier(fname, "raw", this.reactContext.getPackageName());
-//    mp = MediaPlayer.create(this.reactContext, resID);
     mp = MediaPlayer.create(this.reactContext, Uri.fromFile(new File(audio)));
     mp.start();
     mp.setOnCompletionListener(new OnCompletionListener() {
@@ -40,5 +37,10 @@ public class RNAudioPlayerModule extends ReactContextBaseJavaModule {
         mp = null;
       }
     });
+  }
+
+  @ReactMethod
+  public void stop(){
+    mp.stop();
   }
 }
